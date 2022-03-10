@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { TinyInTennessee } from './tit';
+import { TinyInTennessee } from './components/tit';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TinyInTennessee/>
+    <Router><TinyInTennessee/></Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,78 +1,37 @@
-import React, { useRef } from "react"
+import React from "react"
 import { Link, useHistory } from "react-router-dom"
+import "./NavBar.css"
 
 
-
-
-export const NavBar = ({token, setToken}) => {
+export const NavBar = () => {
     const history = useHistory()
-    const navbar = useRef()
-    const hamburger = useRef()
-
-    const showMobileNavbar = () => {
-        hamburger.current.classList.toggle('is-active')
-        navbar.current.classList.toggle('is-active')
-    }
-
     return (
-        <nav className="navbar is-success mb-3" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <a className="navbar-item" href="/">
-          <img src={"src/Images/Tiny in Tennessee (1).png"} height="3rem" /> <h1 className="title is-4">Rare Publishing</h1>
-        </a>
-
-        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={showMobileNavbar} ref={hamburger}>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div className="navbar-menu" ref={navbar}>
-        <div className="navbar-start">
-          {
-            token
-              ?
-              <>
-                {/* <Link to="/tags" className="navbar-item">Tags</Link>
-                <Link to="/PostList" className="navbar-item">All Posts</Link>
-                <Link to="/categories" className="navbar-item">Category Management</Link>
-                <Link to="/createPost" className="navbar-item">Create Posts</Link>
-                <Link to="/Users" className="navbar-item">User Management</Link>
-                <Link to="/my-posts" className="navbar-item">My Posts</Link> */}
-              </>
-              :
-              ""
-          }
-        </div>
-
-
-
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              {
-                token
-                  ?
-                  <button className="button is-outlined" onClick={() => {
-                    setToken('')
-                    history.push('/login')
-                  }}>Logout</button>
-                  :
-                  <>
-                    <Link to="/register" className="button is-link">Register</Link>
-                    <Link to="/login" className="button is-outlined">Login</Link>
-                  </>
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+        <ul className="navbar">
+            <li className="navbar__item">
+                BuilderView
+            </li>
+            
+            <li className="navbar__item">
+                Navigation link
+            </li>
+            {
+                (localStorage.getItem("tit_token") !== null) ?
+                    <li className="nav-item">
+                        <button className="nav-link fakeLink"
+                            onClick={() => {
+                                localStorage.removeItem("tit_token")
+                                history.push({ pathname: "/" })
+                            }}
+                        >Logout</button>
+                    </li> :
+                    <>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/login">Login</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/register">Register</Link>
+                        </li>
+                    </>
+            }        </ul>
     )
-
-
-
-
-
 }
