@@ -1,0 +1,40 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@200;500;600&display=swap');
+
+
+h4 {
+    color: #EBBAB9;
+    font-family: 'Raleway ', sans-serif ;
+}
+
+main {
+    flex-direction: column;
+
+}
+
+.parking__content {
+    /* display: flex; */
+}
+
+.button {
+    color: black;
+    border: none;
+    background-color: #EBBAB9;
+    border-radius: 5px;
+    height: 32px;
+    width: 59px;
+    transition-duration: 0.4s;
+    font-family: 'Raleway', sans-serif;
+}
+
+.button:hover {
+    background-color: #dfafae
+}
+
+.button__div {
+
+}
+
+.website__link {
+    color: #388697;
+}

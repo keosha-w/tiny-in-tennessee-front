@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { BuilderList } from "./Builder/BuilderList.js"
+import { ParkingList } from "./Parking.js/ParkingList.js"
 
 
 export const ApplicationViews = () => {
@@ -11,6 +12,9 @@ export const ApplicationViews = () => {
         }}>
             <Route exact path="/builders">
                 <BuilderList />
+            </Route>
+            <Route exact path="/parking">
+                <ParkingList />
             </Route>
             
             

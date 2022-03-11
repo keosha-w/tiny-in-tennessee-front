@@ -12,7 +12,7 @@ export const NavBar = () => {
             </li>
             
             <li className="navbar__item">
-                Communities
+            <Link className="nav-link" to="/parking">Parking</Link>
             </li>
             <li className="navbar__item">
                 Laws
