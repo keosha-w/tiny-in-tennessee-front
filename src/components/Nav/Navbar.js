@@ -8,12 +8,29 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item">
-                BuilderView
+            <Link className="nav-link" to="/builders">Builders</Link>
             </li>
             
             <li className="navbar__item">
-                Navigation link
+                Communities
             </li>
+            <li className="navbar__item">
+                Laws
+            </li>
+            <li className="navbar__item">
+                Parking
+            </li>
+            <li className="navbar__item">
+                Meet
+            </li>
+            <div>
+                <li className="navbar__item">
+                    Profile
+                </li>
+                <li className="navbar__item">
+                    Settings
+                </li>
+            </div>
             {
                 (localStorage.getItem("tit_token") !== null) ?
                     <li className="nav-item">
