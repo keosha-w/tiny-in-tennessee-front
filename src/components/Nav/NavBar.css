@@ -11,11 +11,14 @@
     background: #08415C;
     color: white;
     font-family: 'Raleway ', sans-serif ;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
+    padding-top: 20px;
 }
 
 a {

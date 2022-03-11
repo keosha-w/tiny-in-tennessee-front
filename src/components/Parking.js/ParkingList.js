@@ -19,13 +19,18 @@ export const ParkingList = () => {
                     return (
                         <>
                             <div className="parking__content">
-                                
-                                    <h4>Name</h4>
-                                    <h4>Address</h4>
-                                    <h4>County</h4>
-                                    <p>{parking.title}</p>
-                                    <p>{parking.address}</p>
-                                    <p>{parking.county_id}</p>
+                            <table>
+                                        <th>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>County</th>
+                                        </th>
+                                        <tr>
+                                            <td>{parking.title}</td>
+                                            <td>{parking.address}</td>
+                                            <td>{parking.county_id}</td>
+                                        </tr>
+                            </table>
                             </div>
                             <div className="button__div"><button className="button">Add</button></div>
                         </>

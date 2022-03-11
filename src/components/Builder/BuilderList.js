@@ -19,13 +19,18 @@ export const BuilderList = () => {
                     return (
                         <>
                             <div className="builder__content">
-                                
-                                    <h4>Title</h4>
-                                    <h4>Website</h4>
-                                    <h4>Contact Info</h4>
-                                    <p>{builder.title}</p>
-                                    <a className="website__link" href={builder.website}>{builder.website}</a>
-                                    <p>{builder.contact_info}</p>
+                                    <table>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Website</th>
+                                            <th>Contact Info</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{builder.title}</td>
+                                            <td><a className="website__link" href={builder.website}>{builder.website}</a></td>
+                                            <td>{builder.contact_info}</td>
+                                        </tr>
+                                    </table>
                             </div>
                             <div className="button__div"><button className="button">Add</button></div>
                         </>
