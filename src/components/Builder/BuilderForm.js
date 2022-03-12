@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from 'react-router-dom'
 import { createBuilder, getBuilders } from "./BuilderManager"
-
+import "./builderList.css"
 
 
 export const BuilderForm = () => {
@@ -83,7 +83,7 @@ export const BuilderForm = () => {
                     createBuilder(builder)
                         .then(() => history.push("/builders"))
                 }}
-                className="btn btn-primary">Create</button>
+                className="button">Create</button>
         </form>
     )
 }
