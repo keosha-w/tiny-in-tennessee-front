@@ -24,11 +24,13 @@ export const ParkingList = () => {
                                             <th>Name</th>
                                             <th>Address</th>
                                             <th>County</th>
+                                            <th>Type</th>
                                         </th>
                                         <tr>
                                             <td>{parking.title}</td>
                                             <td>{parking.address}</td>
-                                            <td>{parking.county_id}</td>
+                                            <td>{parking.county.name}</td>
+                                            <td>{parking.location_category.name}</td>
                                         </tr>
                             </table>
                             </div>

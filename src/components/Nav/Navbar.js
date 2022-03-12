@@ -15,13 +15,10 @@ export const NavBar = () => {
             <Link className="nav-link" to="/parking">Parking</Link>
             </li>
             <li className="navbar__item">
-                Laws
+            <Link className="nav-link" to="/laws">Laws</Link>
             </li>
             <li className="navbar__item">
-                Parking
-            </li>
-            <li className="navbar__item">
-                Meet
+            <Link className="nav-link" to="/posts">Posts</Link>
             </li>
             <div>
                 <li className="navbar__item">

@@ -1,8 +1,10 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { BuilderList } from "./Builder/BuilderList.js"
+import { LawList } from "./Laws/LawList.js"
 import { ParkingList } from "./Parking.js/ParkingList.js"
-
+import { PostList } from "./Meet/PostList"
+import { BuilderForm } from "./Builder/BuilderForm.js"
 
 export const ApplicationViews = () => {
     return <>
@@ -13,8 +15,17 @@ export const ApplicationViews = () => {
             <Route exact path="/builders">
                 <BuilderList />
             </Route>
+            <Route exact path="/builders/new">
+                <BuilderForm />
+            </Route>
             <Route exact path="/parking">
                 <ParkingList />
+            </Route>
+            <Route exact path="/laws">
+                <LawList />
+            </Route>
+            <Route exact path="/posts">
+                <PostList />
             </Route>
             
             

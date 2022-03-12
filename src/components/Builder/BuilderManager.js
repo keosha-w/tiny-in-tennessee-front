@@ -6,3 +6,16 @@ export const getBuilders = () => {
     }
     ).then(res => res.json())
 }
+
+export const createBuilder = (builder) => {
+    return fetch("http://localhost:8000/builders", { 
+        method: "POST",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tit_token")}`,
+            "Content-Type": 'application/json'
+        } ,
+        body: JSON.stringify(builder)
+
+    })
+        .then(res => res.json())
+}
