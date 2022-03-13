@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { getBuilders } from "./BuilderManager"
 import "./builderList.css"
 import { Link } from "react-router-dom"
+import Builder from "./Builder"
 
 export const BuilderList = () => {
     const [ builders, setBuilders ] = useState([])
@@ -26,7 +27,7 @@ export const BuilderList = () => {
                                             <th>Contact Info</th>
                                         </tr>
                                         <tr>
-                                            <td>{builder.title}</td>
+                                            <td><Link className="builder__link" to={`/builder/${builder.id}`} builder={builder}>{builder.title}</Link></td>
                                             <td><a className="website__link" href={builder.website}>{builder.website}</a></td>
                                             <td>{builder.contact_info}</td>
                                         </tr>

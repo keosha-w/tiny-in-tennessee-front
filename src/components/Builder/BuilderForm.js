@@ -83,7 +83,7 @@ export const BuilderForm = () => {
                     createBuilder(builder)
                         .then(() => history.push("/builders"))
                 }}
-                className="button">Create</button>
+                className="button">Submit</button>
         </form>
     )
 }

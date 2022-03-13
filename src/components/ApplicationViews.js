@@ -5,6 +5,7 @@ import { LawList } from "./Laws/LawList.js"
 import { ParkingList } from "./Parking.js/ParkingList.js"
 import { PostList } from "./Meet/PostList"
 import { BuilderForm } from "./Builder/BuilderForm.js"
+import Builder from "./Builder/Builder.js"
 
 export const ApplicationViews = () => {
     return <>
@@ -14,6 +15,9 @@ export const ApplicationViews = () => {
         }}>
             <Route exact path="/builders">
                 <BuilderList />
+            </Route>
+            <Route exact path="/builder/:builderId(\d+)">
+                <Builder />
             </Route>
             <Route exact path="/builders/new">
                 <BuilderForm />
