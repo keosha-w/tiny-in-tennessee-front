@@ -33,11 +33,11 @@ export const BuilderList = () => {
                                         </tr>
                                     </table>
                             </div>
-                            <div className="button__div"><button onClick={() => {history.push('/builders/new')}} className="button">Add</button></div>
                         </>
                     )
                 })
             }
+            <div className="button__div"><button onClick={() => {history.push('/builders/new')}} className="button">Add</button></div>
         </>
     )
 }

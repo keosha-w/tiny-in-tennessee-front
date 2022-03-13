@@ -34,11 +34,11 @@ export const LawList = () => {
                                         </tr>
                                     </table>
                             </div>
-                            <div className="button__div"><button className="button">Add</button></div>
                         </>
                     )
                 })
             }
+            <div className="button__div"><button className="button">Add</button></div>
         </>
     )
 }

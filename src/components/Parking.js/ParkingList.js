@@ -35,11 +35,11 @@ export const ParkingList = () => {
                                         </tr>
                             </table>
                             </div>
-                            <div onClick={() => {history.push('/parking/new')}} className="button__div"><button className="button">Add</button></div>
                         </>
                     )
                 })
             }
+            <div onClick={() => {history.push('/parking/new')}} className="button__div"><button className="button">Add</button></div>
         </>
     )
 }
