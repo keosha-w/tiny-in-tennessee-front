@@ -8,6 +8,7 @@ import { BuilderForm } from "./Builder/BuilderForm.js"
 import Builder from "./Builder/Builder.js"
 import Parking from "./Parking.js/Parking.js"
 import { ParkingForm } from "./Parking.js/ParkingForm.js"
+import { PostForm } from "./Meet/PostForm.js"
 
 export const ApplicationViews = () => {
     return <>
@@ -38,6 +39,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/posts">
                 <PostList />
+            </Route>
+            <Route exact path="/posts/new">
+                <PostForm />
             </Route>
             
             

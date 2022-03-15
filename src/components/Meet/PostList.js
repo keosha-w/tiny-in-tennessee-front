@@ -27,7 +27,7 @@ export const PostList = () => {
                     )
                 })
             }
-            <div className="button__div"><button className="button">Add</button></div>
+            <div className="button__div"><button onClick={() => {history.push('/posts/new')}} className="button">Add</button></div>
         </>
     )
 }
