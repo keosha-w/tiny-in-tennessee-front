@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { getLocations } from "./ParkingManager"
+import { getLocations } from "../Repos/ParkingManager"
 import "./parkingList.css"
 import { Link } from "react-router-dom"
 

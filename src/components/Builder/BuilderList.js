@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { getBuilders } from "./BuilderManager"
+import { getBuilders } from "../Repos/BuilderManager"
 import "./builderList.css"
 import { Link } from "react-router-dom"
 import Builder from "./Builder"

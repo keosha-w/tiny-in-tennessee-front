@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { getLaws } from "./LawManager"
+import { getLaws } from "../Repos/LawManager"
 import "./lawList.css"
 import { Link } from "react-router-dom"
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { getPosts } from "./PostManager"
+import { getPosts } from "../Repos/PostManager"
 import { Link } from "react-router-dom"
 
 export const PostList = () => {

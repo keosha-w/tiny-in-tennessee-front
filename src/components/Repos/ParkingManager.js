@@ -18,7 +18,7 @@ export const getSingleParking = (parkingId) => {
 }
 
 export const createParking = (parking) => {
-    return fetch("http://localhost:8000/parkings", { 
+    return fetch("http://localhost:8000/locations", { 
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem('tit_token')}`,

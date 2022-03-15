@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useLocation, useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { getSingleParking } from "./ParkingManager"
+import { getSingleParking } from "../Repos/ParkingManager"
 
 
 

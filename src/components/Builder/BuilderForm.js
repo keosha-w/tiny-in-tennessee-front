@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from 'react-router-dom'
-import { createBuilder, getBuilders } from "./BuilderManager"
+import { createBuilder, getBuilders } from "../Repos/BuilderManager"
 import "./builderList.css"
 
 
@@ -74,8 +74,7 @@ export const BuilderForm = () => {
                     const builder = {
                         title: currentBuilder.title,
                         website: currentBuilder.website,
-                        contact_info: currentBuilder.contact_info,
-                        user: localStorage.getItem("tit_token")
+                        contact_info: currentBuilder.contact_info
                         
                     }
 
