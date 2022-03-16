@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { getPosts } from "../Repos/PostManager"
 import { Link } from "react-router-dom"
+import "./post.css"
 
 export const PostList = () => {
     const [ posts, setPosts ] = useState([])
@@ -18,10 +19,10 @@ export const PostList = () => {
                     return (
                         <>
                             <div className="post__content">
-                                    <img src={post?.content}></img>
+                                    {/* <img src={require('post?.content')}></img> */}
                                     <p>{post.user.username}</p>
-                                    <button>Like</button>
-                                    <p>{post.title}</p>
+                                    <button onClick={() => {history.push(`/post/${post.id}/edit`)}}>Edit</button>
+                                    <Link className="website__link" to={`/post/${post.id}`} post={post}>{post.title}</Link>
                             </div>
                         </>
                     )

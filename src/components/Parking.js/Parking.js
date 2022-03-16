@@ -35,7 +35,7 @@ export default ({ parking, sync }) => {
                     <p>{currentParking?.title}</p>
                     <a className="website__link" href={currentParking?.website}>{currentParking?.website}</a>
                     <p>{currentParking?.contact_info}</p>
-                    <div className="button__div"><button onClick={() => {history.push('/parkings/edit')}} className="button">Edit</button></div>
+                    <div className="button__div"><button onClick={() => {history.push(`/parking/${parkingId}/edit`)}} className="button">Edit</button></div>
                     
                 </div>
                 :

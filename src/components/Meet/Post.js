@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useLocation, useParams, useHistory } from "react-router-dom"
 import { getSingleBuilder } from "../Repos/BuilderManager"
-
+import "./post.css"
 
 
 export default ({ builder, sync }) => {
@@ -31,18 +31,12 @@ export default ({ builder, sync }) => {
         <>
             {details
                 ?
-                <div class="builder">
-                    <p>{currentBuilder?.title}</p>
-                    <a className="website__link" href={currentBuilder?.website}>{currentBuilder?.website}</a>
-                    <p>{currentBuilder?.contact_info}</p>
-                    <div className="button__div"><button onClick={() => {history.push(`/builder/${builderId}/edit`)}} className="button">Edit</button></div>
-                    
-                </div>
+                ""
                 :
                 <div class="builder">
                     
-                        <Link to={`/builders/${builder?.id}`} >
-                            <h2>{builder?.title}</h2>
+                        <Link to={`/posts/${post?.id}`} >
+                            <h2>{post?.title}</h2>
                         </Link>
                     
                     

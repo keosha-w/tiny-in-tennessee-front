@@ -19,3 +19,13 @@ export const createPost = (post) => {
     })
         .then(res => res.json())
 }
+
+export const getSinglePost = (postId) => {
+    return fetch(`http://localhost:8000/locations/${postId}`, {
+
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("tit_token")}`
+        },
+    })
+            .then(res => res.json())
+}

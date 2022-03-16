@@ -29,3 +29,16 @@ export const createParking = (parking) => {
     })
         .then(res => res.json())
 }
+
+
+export const updateParking = (parking, id) => {
+    return fetch(`http://localhost:8000/locations/${id}`, { 
+        method: "Put",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tit_token")}`, 
+            "Content-Type": 'application/json'
+        } ,
+        body: JSON.stringify(parking)
+
+    })
+}
