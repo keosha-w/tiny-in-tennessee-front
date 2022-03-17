@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useHistory } from 'react-router-dom'
-import { createPost, getPosts, getSinglePost } from "../Repos/PostManager"
+import { createPost, getPosts, getSinglePost, updatePost } from "../Repos/PostManager"
 
 
 
 export const EditPostForm = () => {
     const history = useHistory()
-    const [posts, setPosts] = useState([])
     const { postId } = useParams()
     const [currentPost, setCurrentPost] = useState({
         title: "",
@@ -21,9 +20,9 @@ export const EditPostForm = () => {
     useEffect(() => {
         getSinglePost(postId).then(data => setCurrentPost({
             title: data.title,
-            content: data.address,
-            date_posted: data.county?.id,
-            is_approved: data.monthlyPrice,
+            content: data.content,
+            date_posted: data.date_posted,
+            is_approved: data.is_approved,
            
         }))
     }, [postId])
@@ -46,10 +45,6 @@ export const EditPostForm = () => {
     }
 
 
-    useEffect(() => {
-        getSinglePost().then(data => setCurrentPost(data))
-    }, [postId])
-
    
 
     const changePostState = (domEvent) => {
@@ -62,7 +57,7 @@ export const EditPostForm = () => {
 
     return (
         <form className="postForm">
-            <h2 className="postForm__title">Register New Post</h2>
+            <h2 className="postForm__title">Edit your post</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Title: </label>
@@ -91,12 +86,11 @@ export const EditPostForm = () => {
 
                     const post = {
                         title: currentPost.title,
-                        content: currentPost.content,
-                        date_posted: `${createdYear}-${twoDigit(createdMonth)}-${twoDigit(createdDay)}`
+                        content: currentPost.content
                     }
 
                     // Send POST request to your API
-                    createPost(post)
+                    updatePost(post, postId)
                         .then(() => history.push("/posts"))
                 }}
                 className="button">Submit</button>
