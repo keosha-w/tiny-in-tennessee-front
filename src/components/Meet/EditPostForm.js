@@ -11,6 +11,7 @@ export const EditPostForm = () => {
     const history = useHistory()
     const { postId } = useParams()
     const [tags, setTags] = useState([])
+    const [defaultTags, setDefaultTags] = useState([])
     const [selectedTags, setSelectedTags] = useState([])
     const [Options, setOptions] = useState([])
     const [value, setValue] = useState([])
@@ -19,20 +20,21 @@ export const EditPostForm = () => {
         content: "",
         date_posted: "",
         is_approved: false,
-        tags: [],
         user: localStorage.getItem("tit_token")
 
     })
 
     useEffect(() => {
-        getSinglePost(postId).then(data => setCurrentPost({
+        getSinglePost(postId).then(data => {
+            tagsOnState(data.tags)
+            setCurrentPost({
             title: data.title,
             content: data.content,
             date_posted: data.date_posted,
             is_approved: data.is_approved,
             tags: data.tags
 
-        }))
+        })})
     }, [postId])
 
 
@@ -40,10 +42,7 @@ export const EditPostForm = () => {
         getTags().then(data => setTags(data))
     }, [])
 
-    useEffect(() => {
-        tagsOnState(currentPost.tags)
-    }, [currentPost.tags])
-
+    
     useEffect(() => {
         tagToOptions(tags)
     }, [tags])
@@ -83,19 +82,25 @@ export const EditPostForm = () => {
             options.push(object)
         }
     
-        setSelectedTags(options)
+        setDefaultTags(options)
 
     }
 
 
     
     const valueToTags = (value) => {
+        console.log(value)
         let parsedArray = [...selectedTags]
         const array = value.split(',')
         for (const a of array) {
-            parsedArray.push(parseInt(a))
+            const foundTag = tags.find(tag => {
+            return    a == tag.id
+            })
+            let fullTagObj = { label:  `${foundTag.tag}`, value:  `${foundTag.id}`  }
+            parsedArray.push(fullTagObj)
         }
-        setSelectedTags(parsedArray)
+        console.log(parsedArray)
+        setSelectedTags([...new Set(parsedArray)]) // Set strips out duplicates and Array.from turns the set back into an array
     }
 
 
@@ -147,7 +152,7 @@ export const EditPostForm = () => {
                     <MultiSelect
                         onChange={changeTagState}
                         options={Options}
-                        defaultValue={selectedTags}
+                        defaultValue={defaultTags}
                     />
                 </div>
             </fieldset>
@@ -162,7 +167,7 @@ export const EditPostForm = () => {
                     const post = {
                         title: currentPost.title,
                         content: currentPost.content,
-                        tags: selectedTags.tags
+                        tags: selectedTags.map(t => t.value)
                     }
 
                     // Send POST request to your API
