@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react"
 import { useHistory } from 'react-router-dom'
 import { createPost, getPosts } from "../Repos/PostManager"
 import { getTags } from "../Repos/TagManager."
-
+import MultiSelect from 'react-multiple-select-dropdown-lite'
+import 'react-multiple-select-dropdown-lite/dist/index.css'
 
 
 export const PostForm = () => {
     const history = useHistory()
     const [posts, setPosts] = useState([])
     const [tags, setTags] = useState([])
+    const [selectedTags, setSelectedTags] = useState([])
+    const [Options, setOptions] = useState([])
+    const [value, setValue] = useState([])
     const [currentPost, setCurrentPost] = useState({
         title: "",
         content: "",
@@ -18,7 +22,7 @@ export const PostForm = () => {
         user: localStorage.getItem("tit_token")
         
     })
-    
+
     useEffect(() => {
         getPosts().then(data => setPosts(data))
     }, [])
@@ -26,6 +30,10 @@ export const PostForm = () => {
     useEffect(() => {
         getTags().then(data => setTags(data))
     }, [])
+
+    useEffect(() => {
+        tagToOptions(tags)
+    }, [tags])
 
     /*
         Since the input fields are bound to the values of
@@ -44,7 +52,21 @@ export const PostForm = () => {
         }
     }
 
+    const tagToOptions = (tags) => {
+        let options = []
+        for (const tag of tags) {
+            let object = { label:  `${tag.tag}`, value:  `${tag.id}`  }
+            options.push(object)
+        }
+        console.log(options)
+        setOptions(options)
+    }
 
+    const valueToTags = (value) => {
+        const array = value.split(',')
+        const parsedArray = array.map(a => parseInt(a))
+        setSelectedTags(parsedArray)
+    }
 
    
 
@@ -57,9 +79,7 @@ export const PostForm = () => {
     }
 
     const changeTagState = (domEvent) => {
-        const copy = {...currentPost}
-        copy.tags.push(domEvent.target.value)
-        setCurrentPost(copy)
+        valueToTags(domEvent)
     }
 
     return (
@@ -84,19 +104,17 @@ export const PostForm = () => {
                 </div>
             </fieldset>
             <fieldset>
-            <div className="form-group">
-                                    <label htmlFor="tags">Category: </label>
-                                    <select name="tags" required className="form-control"
-                                        value={currentPost.tags}
-                                        onChange={changeTagState}>
-                                        <option value="0">Select tags</option>
-                                        {
-                                            tags.map(t => (
-                                                <option key={t.id} value={t.id}>{t.tag}</option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
+            <div className="app">
+                    <div className="preview-values">
+                        <h4>Select tags</h4>
+                        
+                    </div>
+
+                    <MultiSelect
+                        onChange={changeTagState}
+                        options={Options}
+                    />
+                </div>
             </fieldset>
         
 
@@ -109,7 +127,7 @@ export const PostForm = () => {
                     const post = {
                         title: currentPost.title,
                         content: currentPost.content,
-                        tags: currentPost.tags,
+                        tags: selectedTags,
                         date_posted: `${createdYear}-${twoDigit(createdMonth)}-${twoDigit(createdDay)}`
                     }
 

@@ -3,13 +3,17 @@ import { useParams } from "react-router-dom"
 import { useHistory } from 'react-router-dom'
 import { createPost, getPosts, getSinglePost, updatePost } from "../Repos/PostManager"
 import { getTags } from "../Repos/TagManager."
-
+import MultiSelect from 'react-multiple-select-dropdown-lite'
+import 'react-multiple-select-dropdown-lite/dist/index.css'
 
 
 export const EditPostForm = () => {
     const history = useHistory()
     const { postId } = useParams()
     const [tags, setTags] = useState([])
+    const [selectedTags, setSelectedTags] = useState([])
+    const [Options, setOptions] = useState([])
+    const [value, setValue] = useState([])
     const [currentPost, setCurrentPost] = useState({
         title: "",
         content: "",
@@ -17,7 +21,7 @@ export const EditPostForm = () => {
         is_approved: false,
         tags: [],
         user: localStorage.getItem("tit_token")
-        
+
     })
 
     useEffect(() => {
@@ -26,7 +30,8 @@ export const EditPostForm = () => {
             content: data.content,
             date_posted: data.date_posted,
             is_approved: data.is_approved,
-           
+            tags: data.tags
+
         }))
     }, [postId])
 
@@ -35,17 +40,25 @@ export const EditPostForm = () => {
         getTags().then(data => setTags(data))
     }, [])
 
+    useEffect(() => {
+        tagsOnState(currentPost.tags)
+    }, [currentPost.tags])
+
+    useEffect(() => {
+        tagToOptions(tags)
+    }, [tags])
+
 
     /*
         Since the input fields are bound to the values of
         the properties of this state variable, you need to
         provide some default values.
     */
-        const postDate = new Date()
-        const createdYear = postDate.getFullYear()
-        const createdMonth = postDate.getMonth() + 1
-        const createdDay = postDate.getDate()
-        const twoDigit = (dateString) => {
+    const postDate = new Date()
+    const createdYear = postDate.getFullYear()
+    const createdMonth = postDate.getMonth() + 1
+    const createdDay = postDate.getDate()
+    const twoDigit = (dateString) => {
         if (dateString.length < 2) {
             return `0${dateString}`
         } else {
@@ -53,21 +66,54 @@ export const EditPostForm = () => {
         }
     }
 
+    const tagToOptions = (tags) => {
+        let options = []
+        for (const tag of tags) {
+            let object = { label:  `${tag.tag}`, value:  `${tag.id}`  }
+            options.push(object)
+        }
+    
+        setOptions(options)
 
-   
+    }
+    const tagsOnState = (postTags) => {
+        let options = []
+        for (const tag of postTags) {
+            let object = { label:  `${tag.tag}`, value:  `${tag.id}`  }
+            options.push(object)
+        }
+    
+        setSelectedTags(options)
+
+    }
+
+
+    
+    const valueToTags = (value) => {
+        let parsedArray = [...selectedTags]
+        const array = value.split(',')
+        for (const a of array) {
+            parsedArray.push(parseInt(a))
+        }
+        setSelectedTags(parsedArray)
+    }
+
+
 
     const changePostState = (domEvent) => {
         domEvent.preventDefault()
-        const copy = {...currentPost}
+        const copy = { ...currentPost }
         let key = domEvent.target.name
         copy[key] = domEvent.target.value
         setCurrentPost(copy)
     }
 
     const changeTagState = (domEvent) => {
-        const copy = {...currentPost}
-        copy.tags.push(domEvent.target.value)
-        setCurrentPost(copy)
+        // const copy = { ...currentPost }
+        // copy.tags.push(domEvent.target.value)
+        // setCurrentPost(copy)
+        valueToTags(domEvent)
+        
     }
 
     return (
@@ -92,21 +138,20 @@ export const EditPostForm = () => {
                 </div>
             </fieldset>
             <fieldset>
-            <div className="form-group">
-                                    <label htmlFor="tags">Category: </label>
-                                    <select name="tags" required className="form-control"
-                                        value={currentPost.tags}
-                                        onChange={changeTagState}>
-                                        <option value="0">Select tags</option>
-                                        {
-                                            tags.map(t => (
-                                                <option key={t.id} value={t.id}>{t.tag}</option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
+                <div className="app">
+                    <div className="preview-values">
+                        <h4>Select tags</h4>
+                          {}
+                    </div>
+
+                    <MultiSelect
+                        onChange={changeTagState}
+                        options={Options}
+                        defaultValue={selectedTags}
+                    />
+                </div>
             </fieldset>
-        
+
 
 
             <button type="submit"
@@ -117,7 +162,7 @@ export const EditPostForm = () => {
                     const post = {
                         title: currentPost.title,
                         content: currentPost.content,
-                        tags: currentPost.tags
+                        tags: selectedTags.tags
                     }
 
                     // Send POST request to your API
