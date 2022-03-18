@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from 'react-router-dom'
 import { createPost, getPosts } from "../Repos/PostManager"
+import { getTags } from "../Repos/TagManager."
 
 
 
 export const PostForm = () => {
     const history = useHistory()
     const [posts, setPosts] = useState([])
+    const [tags, setTags] = useState([])
     const [currentPost, setCurrentPost] = useState({
         title: "",
         content: "",
         date_posted: "",
         is_approved: false,
+        tags: [],
         user: localStorage.getItem("tit_token")
         
     })
+    
+    useEffect(() => {
+        getPosts().then(data => setPosts(data))
+    }, [])
+
+    useEffect(() => {
+        getTags().then(data => setTags(data))
+    }, [])
 
     /*
         Since the input fields are bound to the values of
@@ -34,9 +45,6 @@ export const PostForm = () => {
     }
 
 
-    useEffect(() => {
-        getPosts().then(data => setPosts(data))
-    }, [])
 
    
 
@@ -45,6 +53,12 @@ export const PostForm = () => {
         const copy = {...currentPost}
         let key = domEvent.target.name
         copy[key] = domEvent.target.value
+        setCurrentPost(copy)
+    }
+
+    const changeTagState = (domEvent) => {
+        const copy = {...currentPost}
+        copy.tags.push(domEvent.target.value)
         setCurrentPost(copy)
     }
 
@@ -69,6 +83,21 @@ export const PostForm = () => {
                     />
                 </div>
             </fieldset>
+            <fieldset>
+            <div className="form-group">
+                                    <label htmlFor="tags">Category: </label>
+                                    <select name="tags" required className="form-control"
+                                        value={currentPost.tags}
+                                        onChange={changeTagState}>
+                                        <option value="0">Select tags</option>
+                                        {
+                                            tags.map(t => (
+                                                <option key={t.id} value={t.id}>{t.tag}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+            </fieldset>
         
 
 
@@ -80,6 +109,7 @@ export const PostForm = () => {
                     const post = {
                         title: currentPost.title,
                         content: currentPost.content,
+                        tags: currentPost.tags,
                         date_posted: `${createdYear}-${twoDigit(createdMonth)}-${twoDigit(createdDay)}`
                     }
 

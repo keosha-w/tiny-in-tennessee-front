@@ -2,16 +2,17 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { BuilderList } from "./Builder/BuilderList.js"
 import { LawList } from "./Laws/LawList.js"
-import { ParkingList } from "./Parking.js/ParkingList.js"
+import { ParkingList } from "./Parking/ParkingList.js"
 import { PostList } from "./Meet/PostList"
 import { BuilderForm } from "./Builder/BuilderForm.js"
 import Builder from "./Builder/Builder.js"
-import Parking from "./Parking.js/Parking.js"
-import { ParkingForm } from "./Parking.js/ParkingForm.js"
+import Parking from "./Parking/Parking.js"
+import { ParkingForm } from "./Parking/ParkingForm.js"
 import { PostForm } from "./Meet/PostForm.js"
 import { EditBuilderForm } from "./Builder/EditBuilderForm.js"
-import { EditParkingForm } from "./Parking.js/EditParkingForm.js"
 import { EditPostForm } from "./Meet/EditPostForm.js"
+import { AdminView } from "./Admin/Admin.js"
+import { EditParkingForm } from "./Parking/EditParkingForm.js"
 
 export const ApplicationViews = () => {
     return <>
@@ -54,6 +55,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/post/:postId(\d+)/edit">
                 <EditPostForm />
+            </Route>
+            <Route exact path="/admin">
+                <AdminView />
             </Route>
             
             

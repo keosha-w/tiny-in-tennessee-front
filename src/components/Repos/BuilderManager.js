@@ -41,3 +41,11 @@ export const updateBuilder = (builder, id) => {
 
     })
 }
+
+export const deleteBuilder = (id) => {
+    return fetch(`http://localhost:8000/builders/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("tit_token")}`
+        }})}
+

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useLocation, useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { getSingleParking } from "../Repos/ParkingManager"
+import { deleteParking, getSingleParking } from "../Repos/ParkingManager"
 
 
 
@@ -36,7 +36,10 @@ export default ({ parking, sync }) => {
                     <a className="website__link" href={currentParking?.website}>{currentParking?.website}</a>
                     <p>{currentParking?.contact_info}</p>
                     <div className="button__div"><button onClick={() => {history.push(`/parking/${parkingId}/edit`)}} className="button">Edit</button></div>
-                    
+                    <div className="button__div"><button onClick={() => {
+                        if (window.confirm('Are you sure you want to delete this post?') == true)
+                        deleteParking(parkingId).then(history.push('/parking'))
+                        }} className="button">Delete</button></div>
                 </div>
                 :
                 <div class="parking">

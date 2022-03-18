@@ -14,10 +14,6 @@ export const LawList = () => {
 
     return (
         <>
-            {
-                laws.map((law) => {
-                    return (
-                        <>
                             <div className="law__content">
                                     <table>
                                         <tr>
@@ -26,18 +22,22 @@ export const LawList = () => {
                                             <th>Building</th>
                                             <th>Notes</th>
                                         </tr>
+            {
+                laws.map((law) => {
+                    return (
+                        <>
                                         <tr>
                                             <td>{law?.county.name}</td>
                                             <td><a className="website__link" href={law?.zoning}>link</a></td>
                                             <td><a className="website__link" href={law?.building}>link</a></td>
                                             <td>{law?.notes}</td>
                                         </tr>
-                                    </table>
-                            </div>
                         </>
                     )
                 })
             }
+            </table>
+    </div>
             <div className="button__div"><button className="button">Add</button></div>
         </>
     )

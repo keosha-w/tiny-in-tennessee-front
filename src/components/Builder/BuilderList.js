@@ -15,10 +15,6 @@ export const BuilderList = () => {
 
     return (
         <>
-            {
-                builders.map((builder) => {
-                    return (
-                        <>
                             <div className="builder__content">
                                     <table>
                                         <tr>
@@ -27,16 +23,20 @@ export const BuilderList = () => {
                                             <th>Contact Info</th>
                                         </tr>
                                         <tr>
+            {
+                builders.map((builder) => {
+                    return (
+                        <>
                                             <td><Link className="builder__link" to={`/builder/${builder.id}`} builder={builder}>{builder.title}</Link></td>
                                             <td><a className="website__link" href={builder.website}>{builder.website}</a></td>
                                             <td>{builder.contact_info}</td>
-                                        </tr>
-                                    </table>
-                            </div>
                         </>
                     )
                 })
             }
+            </tr>
+        </table>
+</div>
             <div className="button__div"><button onClick={() => {history.push('/builders/new')}} className="button">Add</button></div>
         </>
     )

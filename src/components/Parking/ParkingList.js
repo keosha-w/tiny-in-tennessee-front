@@ -15,10 +15,6 @@ export const ParkingList = () => {
 
     return (
         <>
-            {
-                parkings.map((parking) => {
-                    return (
-                        <>
                             <div className="parking__content">
                             <table>
                                         <th>
@@ -27,18 +23,22 @@ export const ParkingList = () => {
                                             <th>County</th>
                                             <th>Type</th>
                                         </th>
+            {
+                parkings.map((parking) => {
+                    return (
+                        <>
                                         <tr>
                                         <td><Link className="website__link" to={`/parking/${parking.id}`} builder={parking}>{parking.title}</Link></td>
                                             <td>{parking.address}</td>
                                             <td>{parking.county.name}</td>
                                             <td>{parking.location_category.name}</td>
                                         </tr>
-                            </table>
-                            </div>
                         </>
                     )
                 })
             }
+            </table>
+            </div>
             <div onClick={() => {history.push('/parking/new')}} className="button__div"><button className="button">Add</button></div>
         </>
     )

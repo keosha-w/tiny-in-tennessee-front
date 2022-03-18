@@ -41,3 +41,10 @@ export const updatePost = (post, id) => {
 
     })
 }
+
+export const deletePost = (id) => {
+    return fetch(`http://localhost:8000/posts/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("tit_token")}`
+        }})}

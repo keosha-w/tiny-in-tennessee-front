@@ -42,3 +42,10 @@ export const updateParking = (parking, id) => {
 
     })
 }
+
+export const deleteParking = (id) => {
+    return fetch(`http://localhost:8000/locations/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("tit_token")}`
+        }})}

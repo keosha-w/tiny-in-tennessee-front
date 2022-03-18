@@ -38,3 +38,14 @@ main {
 .website__link {
     color: #388697;
 }
+
+.link {
+    position: absolute;
+    width: 387px;
+    height: 54px;
+    left: 49px;
+    top: 331px;
+
+    background: #FFFFFF;
+    border-radius: 30px;
+}

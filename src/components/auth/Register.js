@@ -10,6 +10,7 @@ export const Register = () => {
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
+    const is_staff = useRef()
     const history = useHistory()
 
     const handleRegister = (e) => {
@@ -20,7 +21,8 @@ export const Register = () => {
                 "username": username.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
-                "password": password.current.value
+                "password": password.current.value, 
+                "is_staff": is_staff.current.checked
             }
 
             return fetch("http://127.0.0.1:8000/register", {
@@ -35,6 +37,8 @@ export const Register = () => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("tit_token", res.token)
+                        localStorage.setItem("is_admin" , res.is_staff)
+                        localStorage.setItem("user_id" , res.user_id)
                         history.push("/")
                     }
                 })
@@ -64,6 +68,10 @@ export const Register = () => {
                 <fieldset>
                     <label htmlFor="inputUsername">Username</label>
                     <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="inputUsername">Are you an admin? </label>
+                    <input ref={is_staff} type="checkbox" name="is_staff" className="form-control" />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputPassword"> Password </label>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useLocation, useParams, useHistory } from "react-router-dom"
-import { getSingleBuilder } from "../Repos/BuilderManager"
+import { deleteBuilder, getSingleBuilder } from "../Repos/BuilderManager"
 
 
 
@@ -36,6 +36,10 @@ export default ({ builder, sync }) => {
                     <a className="website__link" href={currentBuilder?.website}>{currentBuilder?.website}</a>
                     <p>{currentBuilder?.contact_info}</p>
                     <div className="button__div"><button onClick={() => {history.push(`/builder/${builderId}/edit`)}} className="button">Edit</button></div>
+                    <div className="button__div"><button onClick={() => {
+                        if (window.confirm('Are you sure you want to delete this post?') == true)
+                        deleteBuilder(builderId).then(history.push('/builders'))
+                        }} className="button">Delete</button></div>
                     
                 </div>
                 :

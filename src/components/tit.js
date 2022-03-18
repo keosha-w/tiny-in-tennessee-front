@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useReducer } from "react"
 import { Route, Redirect } from "react-router-dom"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
@@ -7,6 +7,7 @@ import { NavBar } from "./Nav/NavBar"
 
 
 export const TinyInTennessee = () => (
+    
     <>
 
             <Route render={() => {

@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
+
+
 
 
 export const NavBar = () => {
@@ -21,6 +23,11 @@ export const NavBar = () => {
             <Link className="nav-link" to="/posts">Posts</Link>
             </li>
             <div>
+                { localStorage.is_admin  ? < li className="navbar__item"> <Link className="nav-link" to="/admin">Admin
+                </Link> </li>
+                    
+                : ""
+                }
                 <li className="navbar__item">
                     Profile
                 </li>

@@ -5,13 +5,15 @@ import { getCounties } from "../Repos/CountyManager"
 import { getLocationCategories } from "../Repos/LocationCategoryManager"
 import { createParking, getLocations, getSingleParking, updateParking } from "../Repos/ParkingManager"
 import "./parkingList.css"
-
+import { getTags } from "../Repos/TagManager."
 
 export const EditParkingForm = () => {
     const history = useHistory()
     const [parkings, setParkings] = useState([])
     const [counties, setCounties] = useState([])
     const [categories, setCategories] = useState([])
+    
+    
     const { parkingId } = useParams()
     /*
         Since the input fields are bound to the values of
@@ -54,6 +56,8 @@ export const EditParkingForm = () => {
     useEffect(() => {
         getLocationCategories().then(data => setCategories(data))
     }, [])
+
+    
 
     const changeParkingState = (domEvent) => {
         domEvent.preventDefault()
