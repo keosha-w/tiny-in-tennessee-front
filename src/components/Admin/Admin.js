@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-
 import { Link } from "react-router-dom"
-import { getPosts, updatePost } from "../Repos/PostManager"
+import { approvePost, getNotApprovedPosts, getPosts, updatePost } from "../Repos/PostManager"
 import { getLocations } from "../Repos/ParkingManager"
 import { getBuilders, updateBuilder } from "../Repos/BuilderManager"
+import "./admin.css"
 
 
 
@@ -26,11 +26,13 @@ export const AdminView = () => {
     }, [])
 
     useEffect(() => {
-        getPosts().then(data => setPosts(data))
+        sync()
     }, [])
 
 
-
+const sync = () => {
+    return getNotApprovedPosts().then(data => setPosts(data))
+}
    
 
     return (
@@ -38,7 +40,9 @@ export const AdminView = () => {
 
         <>
 
-
+            <div>
+                <h2>Pending Approvals</h2>
+            </div>
             <div className="builder__content">
                 <table>
                     <tr>
@@ -54,19 +58,17 @@ export const AdminView = () => {
                                         <td><Link className="builder__link" to={`/builder/${builder.id}`} builder={builder}>{builder.title}</Link></td>
                                         <td><a className="website__link" href={builder.website}>{builder.website}</a></td>
                                         <td>{builder.contact_info}</td>
-                                        <button onClick={evt => {
-                                            // Prevent form from being submitted
-                                            evt.preventDefault()
-
-                                            const builder = {
-                                                is_approved: true
-
-                                            }
-
-                                            // Send POST request to your API
-                                            updateBuilder(builder, builder.id)
-
-                                        }}>Approve</button>
+                                        <div className="button__div">
+                                            <button onClick={evt => {
+                                                // Prevent form from being submitted
+                                                evt.preventDefault()
+                                                const builder = {
+                                                    is_approved: true
+                                                }
+                                                // Send POST request to your API
+                                                updateBuilder(builder, builder.id)
+                                            }}>Approve</button>
+                                        </div>
                                     </>
                                 )
                             })
@@ -112,11 +114,11 @@ export const AdminView = () => {
                                     // Prevent form from being submitted
                                     evt.preventDefault()
 
-                                    const post = {
+                                    const selectedPost = {
                                         is_approved: true
                                     }
                                     // Send POST request to your API
-                                    updatePost(post, post.id)
+                                    approvePost(selectedPost, post.id).then(sync)
                                 }} >Approve</button>
 
                             

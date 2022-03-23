@@ -23,7 +23,7 @@ export const NavBar = () => {
             <Link className="nav-link" to="/posts">Posts</Link>
             </li>
             <div>
-                { localStorage.is_admin  ? < li className="navbar__item"> <Link className="nav-link" to="/admin">Admin
+                { localStorage.is_admin == "true" ? < li className="navbar__item"> <Link className="nav-link__admin" to="/admin">Admin
                 </Link> </li>
                     
                 : ""

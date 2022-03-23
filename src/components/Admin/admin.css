@@ -1,0 +1,20 @@
+
+
+
+.button {
+    color: black;
+    border: none;
+    background-color: #EBBAB9;
+    border-radius: 5px;
+    height: 32px;
+    width: 59px;
+    transition-duration: 0.4s;
+    font-family: 'Raleway', sans-serif;
+}
+
+.button:hover {
+    background-color: #dfafae
+}
+.button__div {
+
+}

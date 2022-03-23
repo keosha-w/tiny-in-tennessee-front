@@ -23,10 +23,11 @@ export const PostList = () => {
                     return (
                         <>
                             <div className="post__content">
-                                {/* <img src={require('post?.content')}></img> */}
+                                <img src={post?.content}/>
                                 <p>{post.user.username}</p>
-                                <button onClick={() => { history.push(`/post/${post.id}/edit`) }}>Edit</button>
-                                <div className="button__div"><button onClick={() => {
+                                <div className="button__div">
+                                <button onClick={() => { history.push(`/post/${post.id}/edit`) }} className="button">Edit</button>
+                                <button onClick={() => {
                                     if (window.confirm('Are you sure you want to delete this post?') == true)
                                         deletePost(post.id).then(sync)
                                 }} className="button">Delete</button></div>
