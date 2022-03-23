@@ -8,7 +8,7 @@ h4 {
 }
 
 main {
-    flex-direction: column;
+    /* flex-direction: column; */
 
 }
 
@@ -42,4 +42,14 @@ main {
 .builder__link {
     color:#08415C;
     font-weight: bold;
+}
+
+td, th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
 }

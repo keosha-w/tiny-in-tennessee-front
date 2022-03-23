@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { Link } from "react-router-dom"
 import { approvePost, getNotApprovedPosts, getPosts, updatePost } from "../Repos/PostManager"
 import { getLocations } from "../Repos/ParkingManager"
-import { getBuilders, updateBuilder } from "../Repos/BuilderManager"
+import { getAdminBuilders, getBuilders, updateBuilder } from "../Repos/BuilderManager"
 import "./admin.css"
 
 
@@ -18,7 +18,7 @@ export const AdminView = () => {
     const history = useHistory()
 
     useEffect(() => {
-        getBuilders().then(data => setBuilders(data))
+        getAdminBuilders().then(data => setBuilders(data))
     }, [])
 
     useEffect(() => {
@@ -49,31 +49,34 @@ const sync = () => {
                         <th>Title</th>
                         <th>Website</th>
                         <th>Contact Info</th>
+                        <th></th>
                     </tr>
-                    <tr>
+                    
                         {
                             builders.map((builder) => {
                                 return (
-                                    <>
+                                    <tr>
                                         <td><Link className="builder__link" to={`/builder/${builder.id}`} builder={builder}>{builder.title}</Link></td>
                                         <td><a className="website__link" href={builder.website}>{builder.website}</a></td>
                                         <td>{builder.contact_info}</td>
-                                        <div className="button__div">
-                                            <button onClick={evt => {
-                                                // Prevent form from being submitted
-                                                evt.preventDefault()
-                                                const builder = {
-                                                    is_approved: true
-                                                }
-                                                // Send POST request to your API
-                                                updateBuilder(builder, builder.id)
-                                            }}>Approve</button>
-                                        </div>
-                                    </>
+                                        <td>
+                                            <div className="button__div">
+                                                <button onClick={evt => {
+                                                    // Prevent form from being submitted
+                                                    evt.preventDefault()
+                                                    const builder = {
+                                                        is_approved: true
+                                                    }
+                                                    // Send POST request to your API
+                                                    updateBuilder(builder, builder.id)
+                                                }}>Approve</button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 )
                             })
                         }
-                    </tr>
+                    
                 </table>
             </div>
             <div className="parking__content">

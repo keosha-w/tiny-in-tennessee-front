@@ -6,6 +6,14 @@ export const getBuilders = () => {
     }
     ).then(res => res.json())
 }
+export const getAdminBuilders = () => {
+    return fetch("http://localhost:8000/builders/adminList", {
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('tit_token')}`
+        }
+    }
+    ).then(res => res.json())
+}
 
 export const createBuilder = (builder) => {
     return fetch("http://localhost:8000/builders", { 

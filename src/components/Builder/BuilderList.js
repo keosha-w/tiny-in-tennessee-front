@@ -16,25 +16,27 @@ export const BuilderList = () => {
     return (
         <>
                             <div className="builder__content">
-                                    <table>
+                                    <table className="builder__table">
                                         <tr>
                                             <th>Title</th>
                                             <th>Website</th>
                                             <th>Contact Info</th>
                                         </tr>
-                                        <tr>
-            {
-                builders.map((builder) => {
-                    return (
-                        <>
-                                            <td><Link className="builder__link" to={`/builder/${builder.id}`} builder={builder}>{builder.title}</Link></td>
-                                            <td><a className="website__link" href={builder.website}>{builder.website}</a></td>
-                                            <td>{builder.contact_info}</td>
-                        </>
-                    )
-                })
-            }
-            </tr>
+                                        <tbody>
+                                            <tr className="main_content">
+                                                        {
+                                                            builders.map((builder) => {
+                                                                return (
+                                                                    <>
+                                                <td><Link className="builder__link" to={`/builder/${builder.id}`} builder={builder}>{builder.title}</Link></td>
+                                                <td><a className="website__link" href={builder.website}>{builder.website}</a></td>
+                                                <td>{builder.contact_info}</td>
+                                                                    </>
+                                                                )
+                                                            })
+                                                        }
+                                                        </tr>
+                                        </tbody>
         </table>
 </div>
             <div className="button__div"><button onClick={() => {history.push('/builders/new')}} className="button">Add</button></div>
