@@ -14,8 +14,19 @@
     margin-bottom: 0;
     align-items: center;
     font-size: 20px;
+    position: sticky;
+    top: 0;
+    min-width: 275px;
 
 }
+
+/* .navbar li.active {
+    background: #FFF
+}
+
+.navbar li.active a {
+    color: #08415C;
+} */
 
 .navbar__item {
     flex-basis: 20%;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { getLocations } from "../Repos/ParkingManager"
+import { getApprovedLocations, getLocations } from "../Repos/ParkingManager"
 import "./parkingList.css"
 import { Link } from "react-router-dom"
 
@@ -10,19 +10,19 @@ export const ParkingList = () => {
     const history = useHistory()
 
     useEffect(() => {
-        getLocations().then(data => setParkings(data))
+        getApprovedLocations().then(data => setParkings(data))
     },[])
 
     return (
         <>
                             <div className="parking__content">
                             <table>
-                                        <th>
+                                        <tr>
                                             <th>Name</th>
                                             <th>Address</th>
                                             <th>County</th>
                                             <th>Type</th>
-                                        </th>
+                                        </tr>
             {
                 parkings.map((parking) => {
                     return (

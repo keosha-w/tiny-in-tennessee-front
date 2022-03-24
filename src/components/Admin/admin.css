@@ -10,11 +10,22 @@
     width: 59px;
     transition-duration: 0.4s;
     font-family: 'Raleway', sans-serif;
+    
 }
 
 .button:hover {
     background-color: #dfafae
 }
 .button__div {
+    /* left: 1177px; */
+    flex-direction: row-reverse;
+    /* top: 849px; */
+    /* align-items: end; */
+    display: flex;
+    margin: inherit;
+}
 
+table {
+    width: 100%;
+    table-layout: fixed;
 }

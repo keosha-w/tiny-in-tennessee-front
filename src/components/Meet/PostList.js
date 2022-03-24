@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { deletePost, getPosts } from "../Repos/PostManager"
+import { deletePost, getApprovedPosts, getPosts } from "../Repos/PostManager"
 import { Link } from "react-router-dom"
 import "./post.css"
 
@@ -13,7 +13,7 @@ export const PostList = () => {
     }, [])
 
     const sync = () => {
-        getPosts().then(data => setPosts(data))
+        getApprovedPosts().then(data => setPosts(data))
     }
 
     return (
@@ -23,15 +23,15 @@ export const PostList = () => {
                     return (
                         <>
                             <div className="post__content">
-                                <img src={post?.content}/>
+                                <div className="image__div"><img className="post__img" src={post?.content}/></div>
                                 <p>{post.user.username}</p>
+                                <Link className="website__link" to={`/post/${post.id}`} post={post}>{post.title}</Link>
                                 <div className="button__div">
                                 <button onClick={() => { history.push(`/post/${post.id}/edit`) }} className="button">Edit</button>
                                 <button onClick={() => {
                                     if (window.confirm('Are you sure you want to delete this post?') == true)
                                         deletePost(post.id).then(sync)
                                 }} className="button">Delete</button></div>
-                                <Link className="website__link" to={`/post/${post.id}`} post={post}>{post.title}</Link>
                             </div>
                         </>
                     )
