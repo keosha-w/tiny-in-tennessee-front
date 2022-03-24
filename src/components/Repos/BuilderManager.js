@@ -1,5 +1,5 @@
 export const getBuilders = () => {
-    return fetch("http://localhost:8000/builders", {
+    return fetch("http://localhost:8000/builders?approved=True", {
         headers: {
             'Authorization': `Token ${localStorage.getItem('tit_token')}`
         }
@@ -57,3 +57,23 @@ export const deleteBuilder = (id) => {
             "Authorization": `Token ${localStorage.getItem("tit_token")}`
         }})}
 
+export const approveBuilder = (builder, id) => {
+    return fetch(`http://localhost:8000/builders/${id}/approve_builder`, { 
+        method: "Put",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tit_token")}`, 
+            "Content-Type": 'application/json'
+        } ,
+        body: JSON.stringify(builder)
+
+    })
+}
+
+export const getNotApprovedBuilders = () => {
+    return fetch("http://localhost:8000/builders?approved=False", {
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('tit_token')}`
+        }
+    }
+    ).then(res => res.json())
+}

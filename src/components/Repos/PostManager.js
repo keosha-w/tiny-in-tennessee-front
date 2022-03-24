@@ -57,6 +57,14 @@ export const getNotApprovedPosts = () => {
     }
     ).then(res => res.json())
 }
+export const getApprovedPosts = () => {
+    return fetch("http://localhost:8000/posts?approved=True", {
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('tit_token')}`
+        }
+    }
+    ).then(res => res.json())
+}
 
 export const approvePost = (post, id) => {
     return fetch(`http://localhost:8000/posts/${id}/approve_post`, { 

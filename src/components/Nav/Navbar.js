@@ -9,8 +9,8 @@ export const NavBar = () => {
     const history = useHistory()
     return (
         <ul className="navbar">
-            <li className="navbar__item">
-            <Link className="nav-link" to="/builders">Builders</Link>
+            <li className="navbar__item active">
+            <Link className="nav-link " to="/builders">Builders</Link>
             </li>
             
             <li className="navbar__item">
@@ -43,8 +43,7 @@ export const NavBar = () => {
                                 localStorage.removeItem("tit_token")
                                 history.push({ pathname: "/" })
                             }}
-                        >Logout</button>
-                    </li> :
+                        >Logout</button></li> :
                     <>
                         <li className="nav-item">
                             <Link className="nav-link" to="/login">Login</Link>

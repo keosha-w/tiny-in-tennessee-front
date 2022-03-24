@@ -49,3 +49,32 @@ export const deleteParking = (id) => {
         headers: {
             "Authorization": `Token ${localStorage.getItem("tit_token")}`
         }})}
+
+export const getApprovedLocations = () => {
+    return fetch("http://localhost:8000/locations?approved=True", {
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('tit_token')}`
+        }
+    }
+    ).then(res => res.json())
+}
+export const getNotApprovedLocations = () => {
+    return fetch("http://localhost:8000/locations?approved=False", {
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('tit_token')}`
+        }
+    }
+    ).then(res => res.json())
+}
+
+export const approveParking = (parking, id) => {
+    return fetch(`http://localhost:8000/locations/${id}/approve_parking`, { 
+        method: "Put",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tit_token")}`, 
+            "Content-Type": 'application/json'
+        } ,
+        body: JSON.stringify(parking)
+
+    })
+}

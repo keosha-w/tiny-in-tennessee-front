@@ -3,3 +3,29 @@
 .website__link {
     color: #388697;
 }
+
+.post__content {
+    display: flex;
+    width: 564px;
+    height: 440px;
+    left: 603px;
+    top: 52px;
+    background: #E5E5E5;
+    border-radius: 20px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 10%
+}
+
+.post__img {
+    height: 260px;
+}
+
+.image__div {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    margin: 5%
+}
