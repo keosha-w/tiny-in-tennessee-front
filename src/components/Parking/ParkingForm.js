@@ -166,6 +166,7 @@ export const ParkingForm = () => {
 
                     // Send POST request to your API
                     createParking(parking)
+                        .then(window.alert('Your post has been submitted and is awaiting verification by an admin.'))
                         .then(() => history.push("/parking"))
                 }}
                 className="button">Submit</button>

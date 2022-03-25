@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
 
@@ -7,10 +7,11 @@ import "./NavBar.css"
 
 export const NavBar = () => {
     const history = useHistory()
+   
     return (
-        <ul className="navbar">
+        <ul className="navbar"><img src={require("/Users/keosha.watkins/workspace/backendCapstone/tiny-in-tennessee-front/src/components/Nav/TITlogo.png")}/>
             <li className="navbar__item active">
-            <Link className="nav-link " to="/builders">Builders</Link>
+            <Link className="nav-link " to="/builders" >Builders</Link>
             </li>
             
             <li className="navbar__item">
@@ -28,22 +29,17 @@ export const NavBar = () => {
                     
                 : ""
                 }
-                <li className="navbar__item">
-                    Profile
-                </li>
-                <li className="navbar__item">
-                    Settings
-                </li>
+                
             </div>
             {
                 (localStorage.getItem("tit_token") !== null) ?
-                    <li className="nav-item">
-                        <button className="nav-link fakeLink"
+                    <li className="navbar__item">
+                        <Link className=""
                             onClick={() => {
                                 localStorage.removeItem("tit_token")
                                 history.push({ pathname: "/" })
                             }}
-                        >Logout</button></li> :
+                        >Logout</Link></li> :
                     <>
                         <li className="nav-item">
                             <Link className="nav-link" to="/login">Login</Link>

@@ -64,10 +64,10 @@ const syncLocations = () => {
                                     
                                     <tr>
                                         <th>Builders</th>
-                                        <td><Link className="builder__link" to={`/builder/${builder.id}`} builder={builder}>{builder.title}</Link></td>
-                                        <td><p className="website__link">{builder?.user?.user?.username}</p></td>
+                                        <td><Link className="website__link" to={`/builder/${builder.id}`} builder={builder}>{builder.title}</Link></td>
+                                        <td><p className="">{builder?.user?.user?.username}</p></td>
                                         <td>
-                                            <div className="button__div">
+                                            <div className="">
                                                 <button onClick={evt => {
                                                     // Prevent form from being submitted
                                                     evt.preventDefault()

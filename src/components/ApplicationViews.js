@@ -13,6 +13,7 @@ import { EditBuilderForm } from "./Builder/EditBuilderForm.js"
 import { EditPostForm } from "./Meet/EditPostForm.js"
 import { AdminView } from "./Admin/Admin.js"
 import { EditParkingForm } from "./Parking/EditParkingForm.js"
+import { Landing } from "./Landing/Landing.js"
 
 export const ApplicationViews = () => {
     return <>
@@ -20,6 +21,9 @@ export const ApplicationViews = () => {
             margin: "5rem 2rem",
             lineHeight: "1.75rem"
         }}>
+            <Route exact path="/">
+                <Landing />
+            </Route>
             <Route exact path="/builders">
                 <BuilderList />
             </Route>

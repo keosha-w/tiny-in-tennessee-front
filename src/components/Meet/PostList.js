@@ -23,15 +23,25 @@ export const PostList = () => {
                     return (
                         <>
                             <div className="post__content">
-                                <div className="image__div"><img className="post__img" src={post?.content}/></div>
-                                <p>{post.user.username}</p>
-                                <Link className="website__link" to={`/post/${post.id}`} post={post}>{post.title}</Link>
-                                <div className="button__div">
-                                <button onClick={() => { history.push(`/post/${post.id}/edit`) }} className="button">Edit</button>
-                                <button onClick={() => {
-                                    if (window.confirm('Are you sure you want to delete this post?') == true)
-                                        deletePost(post.id).then(sync)
-                                }} className="button">Delete</button></div>
+                                <div className="post__centerdiv">
+                                    <div className="image__div"><img className="post__img" src={post?.content}/></div>
+                                    <p>{post.user.user.username}</p>
+                                    <Link className="website__link" to={`/post/${post.id}`} post={post}>{post.title}</Link>
+                                    <p>{}</p>
+                                    <div className="button__div">
+                                    {  localStorage.user_id == post.user.id ?
+                                        <>
+                                            <button onClick={() => { history.push(`/post/${post.id}/edit`) }} className="button">Edit</button>
+                                                                            <button onClick={() => {
+                                            if (window.confirm('Are you sure you want to delete this post?') == true)
+                                                deletePost(post.id).then(sync)
+                                                                            }} className="button">Delete</button>
+                                        </>
+                                                                
+                                                                : ""
+                                                                
+                                                                }</div>
+                                </div>
                             </div>
                         </>
                     )

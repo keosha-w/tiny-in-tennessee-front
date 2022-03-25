@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { ApplicationViews } from "./ApplicationViews"
-import { NavBar } from "./Nav/NavBar"
+import { NavBar } from "./Nav/Navbar"
 
 
 export const TinyInTennessee = () => (

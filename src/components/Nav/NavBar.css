@@ -31,7 +31,7 @@
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
-    padding-top: 20px;
+
 }
 
 a {
@@ -42,4 +42,16 @@ a {
 
 .nav-link__admin {
     color: #ebbab9
+}
+
+.navbar img {
+    width: 240px;
+
+}
+
+.navbar__item :hover {
+    color: #B5FFE1
+}
+.navbar__item :link :active {
+    color: #B5FFE1
 }

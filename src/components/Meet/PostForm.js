@@ -133,6 +133,7 @@ export const PostForm = () => {
 
                     // Send POST request to your API
                     createPost(post)
+                        .then(window.alert('Your post has been submitted and is awaiting verification by an admin.'))
                         .then(() => history.push("/posts"))
                 }}
                 className="button">Submit</button>

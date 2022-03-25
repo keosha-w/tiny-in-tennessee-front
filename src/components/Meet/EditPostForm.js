@@ -172,6 +172,7 @@ export const EditPostForm = () => {
 
                     // Send POST request to your API
                     updatePost(post, postId)
+                        .then(window.alert('Your post edits have been saved.'))
                         .then(() => history.push("/posts"))
                 }}
                 className="button">Submit</button>

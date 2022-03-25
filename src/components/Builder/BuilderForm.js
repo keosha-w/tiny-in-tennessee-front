@@ -80,6 +80,7 @@ export const BuilderForm = () => {
 
                     // Send POST request to your API
                     createBuilder(builder)
+                        .then(window.alert('Your post has been submitted and is awaiting verification by an admin.'))
                         .then(() => history.push("/builders"))
                 }}
                 className="button">Submit</button>
